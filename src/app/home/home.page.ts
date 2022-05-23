@@ -15,10 +15,12 @@ export class HomePage {
   firstDayOfWeek = moment().startOf('M').day();
   arrayDays: number[];
   dateNow;
-  monthNow;
+  monthNow: string;
+  yearNow: string;
   constructor() {
     this.dateNow = moment();
     this.monthNow = this.months[this.dateNow.month()];
+    this.yearNow = this.dateNow.year();
     this.arrayDays = this.createCalendar(this.dateNow);
   }
   public createCalendar(month) {
@@ -36,5 +38,19 @@ export class HomePage {
       }
     }
     return days;
+  }
+
+  public nextMonth() {
+    this.dateNow.add(1, 'M');
+    this.monthNow = this.months[this.dateNow.month()];
+    this.yearNow = this.dateNow.year();
+    this.arrayDays = this.createCalendar(this.dateNow);
+  }
+
+  public previousMonth() {
+    this.dateNow.subtract(1, 'M');
+    this.monthNow = this.months[this.dateNow.month()];
+    this.yearNow = this.dateNow.year();
+    this.arrayDays = this.createCalendar(this.dateNow);
   }
 }

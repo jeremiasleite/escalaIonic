@@ -7,17 +7,14 @@
 <ion-content [fullscreen]="true">  
     <ion-grid>
       <ion-row>
-        <ion-col>
-          <ion-icon name="chevron-back-outline"></ion-icon>
+        <ion-col (click)='previousMonth()'>                      
+            <ion-icon name="chevron-back-outline"></ion-icon>                   
         </ion-col>
         <ion-col>
-          {{monthNow}} 
-        </ion-col>
-        <ion-col>
-          2022
-        </ion-col>
-        <ion-col>
-          <ion-icon name="chevron-forward-outline"></ion-icon>
+          {{monthNow}} {{yearNow}}
+        </ion-col>        
+        <ion-col (click)='nextMonth()'>                   
+            <ion-icon name="chevron-forward-outline"></ion-icon>                    
         </ion-col>
       </ion-row>
       
