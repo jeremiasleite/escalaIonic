@@ -1,20 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>teste</ion-title>      
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content [fullscreen]="true">  
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <
+        </ion-col>
+        <ion-col>
+          {{monthNow}} 
+        </ion-col>
+        <ion-col>
+          2022
+        </ion-col>
+        <ion-col>
+          >
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col *ngFor="let day of weekdays">{{day}}</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let row of arrayDays.slice(0, arrayDays.length / n % 1 === 0 ? arrayDays.length / n : arrayDays.length / n + 1); let idx = index">
+        <ion-col *ngFor="let x of arrayDays.slice(idx * n, idx * n + n)">{{ x }}</ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    
 </ion-content>
