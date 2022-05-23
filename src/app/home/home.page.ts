@@ -35,7 +35,6 @@ export class HomePage {
         days.push(null);
       }
     }
-    console.log(days);
     return days;
   }
 }
