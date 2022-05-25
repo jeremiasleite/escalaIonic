@@ -30,7 +30,14 @@ export class HomePage {
   monthNowNumber: number;
   yearNow: number;
   today: number;
+  escalaSel = 'a';
   firstDayWorkSA = moment('2022-01-08');
+  firstDayWorkSB = moment('2022-01-04');
+  firstDayWorkSC = moment('2022-01-05');
+  firstDayWorkSD = moment('2022-01-01');
+  firstDayWorkSE = moment('2022-01-02');
+  firstDayWorkSF = moment('2022-01-07');
+
   constructor() {
     this.dateNow = moment();
     this.today = this.isToday(this.dateNow);
@@ -99,19 +106,39 @@ export class HomePage {
     }
   }
 
-  public isDayA(day: any) {
+  public isDay(day: any) {
+    let firstDayWork = this.firstDayWorkSA;
+    if(this.escalaSel==='b'){
+      firstDayWork = this.firstDayWorkSB;
+    }else if(this.escalaSel==='c'){
+      firstDayWork = this.firstDayWorkSC;
+    }else if(this.escalaSel==='d'){
+      firstDayWork = this.firstDayWorkSD;
+    }else if(this.escalaSel==='e'){
+      firstDayWork = this.firstDayWorkSE;
+    }else if(this.escalaSel==='f'){
+      firstDayWork = this.firstDayWorkSF;
+    }
     if(day!==null){
-      const duration = moment.duration(day.diff(this.firstDayWorkSA));
+      const duration = moment.duration(day.diff(firstDayWork));
       const days = Math.floor(duration.asDays());
       const y = days % 9;
-      if (y < 5) {
-        //manhã
-        return 2;
-      } else if (y === 5) {
-        return 1; //noite
-      } else {
-        //folga
-        return 0;
+      if(this.escalaSel ==='a' || this.escalaSel ==='c' || this.escalaSel==='e'){
+        if (y < 5 ) {//manhã
+          return 2;
+        } else if (y === 5) {
+          return 1; //noite
+        } else { //folga
+          return 0;
+        }
+      }else{
+        if (y < 4 ) {//manhã
+          return 2;
+        } else if (y > 3 && y < 6) {
+          return 1; //noite
+        } else { //folga
+          return 0;
+        }
       }
     }else{
       return null;
@@ -126,5 +153,9 @@ export class HomePage {
     }else{
       return null;
     }
+  }
+
+  public escalaSelected(escala: string){
+    this.escalaSel = escala;
   }
 }

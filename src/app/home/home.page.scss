@@ -17,19 +17,30 @@
 
 .calendar {
     background-color: lightcyan;
-    text-align: center;
+    text-align: center;    
+}
+
+.borderDays {
+    border-width: 1px;
+    border-style: solid;
 }
 
 .dia {
-    border-width: 0.1rem;    
-    border-style: solid;
-    border-color: blue;
+    background-color: yellow;    
 }
 
-.noite {
-    border-width: 0.1rem;    
-    border-style: solid;
-    border-color: gray;
+.noite {    
+    background-color: gray;
+}
+.escalas {
+    padding-top: 1em;
+}
+
+.escalas-selected {
+    background-color: black;
+    text-align: center;
+    color: yellow;
+    border-color: black;
 }
 
 

@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid class="calendar">
+  <ion-grid class="calendar" [fixed]="true">
     <ion-row>
       <ion-col (click)="previousMonth()">
         <ion-icon name="chevron-back-outline" class="icon icon-left"></ion-icon>
@@ -27,11 +27,20 @@
     <ion-row
       *ngFor="let row of arrayDays.slice(0, arrayDays.length / n % 1 === 0 ? arrayDays.length / n : arrayDays.length / n + 1); let idx = index"
     >
-      <ion-col
+      <ion-col class="borderDays"
         *ngFor="let x of arrayDays.slice(idx * n, idx * n + n)"
-        [ngClass]="{'dia': isDayA(x)===2, 'noite': isDayA(x)===1} "
+        [ngClass]="{'dia': isDay(x)===2, 'noite': isDay(x)===1} "
         >{{ formatDay(x) }}</ion-col
       >
     </ion-row>
+    <ion-row class="escalas">
+      <ion-col class="borderDays" [ngClass]="{'escalas-selected': escalaSel==='a'}" (click)="escalaSelected('a')">A</ion-col>
+      <ion-col class="borderDays" [ngClass]="{'escalas-selected': escalaSel==='b'}" (click)="escalaSelected('b')">B</ion-col>
+      <ion-col class="borderDays" [ngClass]="{'escalas-selected': escalaSel==='c'}" (click)="escalaSelected('c')">C</ion-col>
+      <ion-col class="borderDays" [ngClass]="{'escalas-selected': escalaSel==='d'}" (click)="escalaSelected('d')">D</ion-col>
+      <ion-col class="borderDays" [ngClass]="{'escalas-selected': escalaSel==='e'}" (click)="escalaSelected('e')">E</ion-col>
+      <ion-col class="borderDays" [ngClass]="{'escalas-selected': escalaSel==='f'}" (click)="escalaSelected('f')">F</ion-col>
+    </ion-row>
+    
   </ion-grid>
 </ion-content>
