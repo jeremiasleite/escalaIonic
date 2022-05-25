@@ -1,28 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>teste</ion-title>      
+    <ion-title>Escala Mqt CBTU-Recife</ion-title>      
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">  
-    <ion-grid>
+    <ion-grid class="calendar">
       <ion-row>
         <ion-col (click)='previousMonth()'>                      
-            <ion-icon name="chevron-back-outline"></ion-icon>                   
+            <ion-icon name="chevron-back-outline" class="icon icon-left"></ion-icon>                   
         </ion-col>
         <ion-col>
           {{monthNow}} {{yearNow}}
         </ion-col>        
-        <ion-col (click)='nextMonth()'>                   
-            <ion-icon name="chevron-forward-outline"></ion-icon>                    
+        <ion-col (click)='nextMonth()'>
+          <div float-right>
+            <ion-icon name="chevron-forward-outline"  class="icon icon-right"></ion-icon>
+          </div>                
         </ion-col>
       </ion-row>
       
-      <ion-row>
+      <ion-row class="border-week">
         <ion-col *ngFor="let day of weekdays">{{day}}</ion-col>
       </ion-row>
       <ion-row *ngFor="let row of arrayDays.slice(0, arrayDays.length / n % 1 === 0 ? arrayDays.length / n : arrayDays.length / n + 1); let idx = index">
-        <ion-col *ngFor="let x of arrayDays.slice(idx * n, idx * n + n)">{{ x }}</ion-col>
+        <ion-col *ngFor="let x of arrayDays.slice(idx * n, idx * n + n)" [ngClass]="{'today': x===today}">{{ x }}</ion-col>
       </ion-row>
     </ion-grid>
   

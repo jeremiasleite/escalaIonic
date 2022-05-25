@@ -1,0 +1,28 @@
+.icon {
+    vertical-align: middle;
+    display: inline-flex;
+    font-size: larger;
+}
+.icon-right {
+    float: right;
+}
+.icon-left {
+    float: left;
+}
+.border-week {
+    border-width: 0.1rem;    
+    border-bottom-style: solid;
+    border-color: lightgray
+}
+
+.calendar {
+    background-color: lightcyan;
+    text-align: center;
+}
+
+.today {
+    border-width: 0.1rem;    
+    border-style: solid;
+    border-color: blue;
+}
+

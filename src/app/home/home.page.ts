@@ -17,8 +17,10 @@ export class HomePage {
   dateNow;
   monthNow: string;
   yearNow: string;
+  today: number;
   constructor() {
     this.dateNow = moment();
+    this.today = this.isToday(this.dateNow);
     this.monthNow = this.months[this.dateNow.month()];
     this.yearNow = this.dateNow.year();
     this.arrayDays = this.createCalendar(this.dateNow);
@@ -45,6 +47,7 @@ export class HomePage {
     this.monthNow = this.months[this.dateNow.month()];
     this.yearNow = this.dateNow.year();
     this.arrayDays = this.createCalendar(this.dateNow);
+    this.today = this.isToday(this.dateNow);
   }
 
   public previousMonth() {
@@ -52,5 +55,13 @@ export class HomePage {
     this.monthNow = this.months[this.dateNow.month()];
     this.yearNow = this.dateNow.year();
     this.arrayDays = this.createCalendar(this.dateNow);
+    this.today = this.isToday(this.dateNow);
+  }
+  public isToday(day: moment.Moment){
+    if(moment().format('L') === day.format('L')){
+      return +day.format('D');
+    }else{
+      return 0;
+    }
   }
 }
