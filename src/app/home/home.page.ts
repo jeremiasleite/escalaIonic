@@ -8,18 +8,18 @@ import * as moment from 'moment';
 })
 export class HomePage {
   months = [
-    'JAN',
-    'FEV',
-    'MAR',
-    'ABR',
-    'MAI',
-    'JUN',
-    'JUL',
-    'AGO',
-    'SET',
-    'OUT',
-    'NOV',
-    'DEZ',
+    'JANEIRO',
+    'FEVEREIRO',
+    'MARÇO',
+    'ABRIL',
+    'MAIO',
+    'JUNHO',
+    'JULHO',
+    'AGOSTO',
+    'SETEMBRO',
+    'OUTUBRO',
+    'NOVEMBRO',
+    'DEZEMBRO',
   ];
   weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
   n = 7;
@@ -74,12 +74,14 @@ export class HomePage {
   }
 
   public previousMonth() {
-    if(this.dateNow.year()>2022 ){
-      this.dateNow.subtract(1, 'M');
+    this.dateNow.subtract(1, 'M');
+    if(this.dateNow.year()>=2022){
       this.monthNow = this.months[this.dateNow.month()];
       this.yearNow = this.dateNow.year();
       this.arrayDays = this.createCalendar(this.dateNow);
       this.today = this.isToday(this.dateNow);
+    }else{
+      this.dateNow.add(1, 'M');
     }
   }
 
