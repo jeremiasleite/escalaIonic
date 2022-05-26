@@ -1,7 +1,7 @@
 .icon {
     vertical-align: middle;
     display: inline-flex;
-    font-size: larger;
+    font-size: x-large;
 }
 .icon-right {
     float: right;
@@ -10,19 +10,22 @@
     float: left;
 }
 .border-week {
-    border-width: 0.1rem;    
+    border-width: 1px;    
     border-bottom-style: solid;
     border-color: lightgray
 }
 
 .calendar {
     background-color: lightcyan;
-    text-align: center;    
+    text-align: center;
+    font-size: medium;   
 }
 
 .borderDays {
     border-width: 1px;
-    border-style: solid;
+    border-style: solid;    
+    font-size: large;
+    height: 3em;
 }
 
 .dia {
@@ -33,7 +36,7 @@
     background-color: gray;
 }
 .escalas {
-    padding-top: 1em;
+    padding-top: 1em;    
 }
 
 .escalas-selected {
