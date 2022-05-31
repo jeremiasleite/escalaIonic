@@ -5,8 +5,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid class="calendar" [fixed]="true">
-    <ion-row>
+  <ion-grid class="calendar">
+    <!--<ion-row>
       <ion-col (click)="previousMonth()">
         <ion-icon name="chevron-back-outline" class="icon icon-left"></ion-icon>
       </ion-col>
@@ -32,8 +32,50 @@
         [ngClass]="{'dia': isDay(x)===2, 'noite': isDay(x)===1} "
         >{{ formatDay(x) }}</ion-col
       >
-    </ion-row>
-    <ion-row class="escalas">
+    </ion-row>-->
+    <!--<ion-row>
+      <table>
+        <tr class="border-week">
+          <th *ngFor="let day of weekdays">{{day}}</th>
+        </tr>
+        <tr *ngFor="let row of arrayDays.slice(0, arrayDays.length / n % 1 === 0 ? arrayDays.length / n : arrayDays.length / n + 1); let idx = index">
+          <td class="borderDays"
+          *ngFor="let x of arrayDays.slice(idx * n, idx * n + n)"
+          [ngClass]="{'dia': isDay(x)===2, 'noite': isDay(x)===1}">{{ formatDay(x) }}</td>
+        </tr>
+      </table>
+    </ion-row>-->
+    
+    <ion-row>
+      <swiper 
+        [loop]="true"
+        (reachEnd) = "chegouFim()"
+        (reachBeginning) = "reComecou()"
+        [initialSlide]= 'monthNowNumber'
+      >
+        <ng-template swiperSlide *ngFor="let item of dataMonths" >
+          <ion-grid>
+            <ion-row style="text-align: center;">
+              {{months[item.month]}} {{item.year}}
+            </ion-row>
+            <ion-row>
+              <ion-grid>
+                <ion-row class="border-week">
+                  <ion-col *ngFor="let day of weekdays">{{day}}</ion-col>
+                </ion-row>
+                <ion-row *ngFor="let row of item.arrayDays.slice(0, item.arrayDays.length / n % 1 === 0 ? item.arrayDays.length / n : item.arrayDays.length / n + 1); let idx = index">
+                  <ion-col class="borderDays"
+                  *ngFor="let x of item.arrayDays.slice(idx * n, idx * n + n)"
+                  [ngClass]="{'dia': isDay(x)===2, 'noite': isDay(x)===1}">{{ formatDay(x) }}</ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-row>
+          </ion-grid>
+          
+          
+        </ng-template>
+      </swiper>
+    </ion-row><ion-row class="escalas">
       <ion-col class="borderDays" [ngClass]="{'escalas-selected': escalaSel==='a'}" (click)="escalaSelected('a')">A</ion-col>
       <ion-col class="borderDays" [ngClass]="{'escalas-selected': escalaSel==='b'}" (click)="escalaSelected('b')">B</ion-col>
       <ion-col class="borderDays" [ngClass]="{'escalas-selected': escalaSel==='c'}" (click)="escalaSelected('c')">C</ion-col>

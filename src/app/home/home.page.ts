@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -23,13 +23,15 @@ export class HomePage {
   ];
   weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
   n = 7;
-  firstDayOfWeek = moment().startOf('M').day();
+  //firstDayOfWeek = moment().startOf('M').day();
   arrayDays: number[];
   dateNow: moment.Moment;
-  monthNow: string;
+  //monthNow: string;
   monthNowNumber: number;
-  yearNow: number;
+  //yearNow: number;
   today: number;
+
+  year: any;
   escalaSel = 'a';
   firstDayWorkSA = moment('2022-01-08');
   firstDayWorkSB = moment('2022-01-04');
@@ -38,17 +40,26 @@ export class HomePage {
   firstDayWorkSE = moment('2022-01-02');
   firstDayWorkSF = moment('2022-01-07');
 
-  constructor() {
+  //dataMonths: [{month: number; year: number; firstDay: number; arrayDays: number[]}];
+  dataMonths: any[]=[];
+  //cd: ChangeDetectorRef;
+
+  constructor(private cd: ChangeDetectorRef) {
+
     this.dateNow = moment();
-    this.today = this.isToday(this.dateNow);
-    this.monthNow = this.months[this.dateNow.month()];
+    //this.today = this.isToday(this.dateNow);
+    //this.monthNow = this.months[this.dateNow.month()];
     this.monthNowNumber = this.dateNow.month();
-    this.yearNow = this.dateNow.year();
-    this.arrayDays = this.createCalendar(this.dateNow);
+    //this.yearNow = this.dateNow.year();
+
+    this.year = this.dateNow.year();
+    //this.arrayDays = this.createCalendar(this.dateNow);
+    //this.dataMonths = [];
+    this.generateYear(this.year);
   }
 
   public createCalendar(month) {
-    const firstDay = moment(month).startOf('M');
+    const firstDay = month.startOf('M');
     const days = Array.apply(null, { length: month.daysInMonth() })
       .map(Number.call, Number)
       .map((n) => moment(firstDay).add(n, 'd'));
@@ -56,16 +67,32 @@ export class HomePage {
     for (let n = 0; n < firstDay.weekday(); n++) {
       days.unshift(null);
     }
-    const isdivide = days.length % 7;
-    if (isdivide !== 0) {
-      for (let i = 0; i < 7 - isdivide; i++) {
+    const x = 42 - days.length;
+    if (days.length < 42) {
+      for (let i = 0; i < x; i++) {
         days.push(null);
       }
     }
     return days;
   }
 
-  public nextMonth() {
+  /**
+   * generateYear
+  year: number   */
+  public generateYear(year: number) {
+    for (let i = 0; i < 12; i++) {
+      const mes = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+      const date = moment(year+'-'+mes[i]+'-01');
+      this.dataMonths.push({
+        month: date.month(),
+        year: date.year(),
+        firstDay: date.startOf('M').day(),
+        arrayDays: this.createCalendar(date)}
+      );
+    }
+  }
+
+  /*public nextMonth() {
     this.dateNow.add(1, 'M');
     this.monthNow = this.months[this.dateNow.month()];
     this.yearNow = this.dateNow.year();
@@ -91,7 +118,7 @@ export class HomePage {
     } else {
       return 0;
     }
-  }
+  }*/
 
   public isDay(day: any) {
     let firstDayWork = this.firstDayWorkSA;
@@ -144,5 +171,22 @@ export class HomePage {
 
   public escalaSelected(escala: string){
     this.escalaSel = escala;
+  }
+
+  public chegouFim(){
+    this.year++;
+    this.dataMonths = [];
+    this.generateYear(this.year);
+    this.cd.detectChanges();
+  }
+
+  /**
+   * reComecou
+   */
+  public reComecou() {
+    this.year--;
+    this.dataMonths = [];
+    this.generateYear(this.year);
+    this.cd.detectChanges();
   }
 }

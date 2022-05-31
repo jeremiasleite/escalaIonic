@@ -1,3 +1,4 @@
+// home.page.scss
 .icon {
     vertical-align: middle;
     display: inline-flex;
@@ -18,14 +19,19 @@
 .calendar {
     //background-color: lightcyan;
     text-align: center;
-    font-size: medium;   
+    font-size: medium;  
+}
+
+table {
+    width: 100%;
 }
 
 .borderDays {
     border-width: 1px;
-    border-style: solid;    
-    font-size: large;
-    height: 3em;
+    border-style: solid;
+    border-color: lightgray;    
+    font-size: 1em;
+    height: 3.5em;
 }
 
 .dia {
