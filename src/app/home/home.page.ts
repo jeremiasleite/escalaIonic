@@ -23,15 +23,10 @@ export class HomePage {
   ];
   weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
   n = 7;
-  //firstDayOfWeek = moment().startOf('M').day();
   arrayDays: number[];
   dateNow: moment.Moment;
-  //monthNow: string;
   monthNowNumber: number;
-  //yearNow: number;
-  today: number;
-
-  year: any;
+  year: number;
   escalaSel = 'a';
   firstDayWorkSA = moment('2022-01-08');
   firstDayWorkSB = moment('2022-01-04');
@@ -40,25 +35,17 @@ export class HomePage {
   firstDayWorkSE = moment('2022-01-02');
   firstDayWorkSF = moment('2022-01-07');
 
-  //dataMonths: [{month: number; year: number; firstDay: number; arrayDays: number[]}];
   dataMonths: any[]=[];
-  //cd: ChangeDetectorRef;
 
   constructor(private cd: ChangeDetectorRef) {
 
     this.dateNow = moment();
-    //this.today = this.isToday(this.dateNow);
-    //this.monthNow = this.months[this.dateNow.month()];
     this.monthNowNumber = this.dateNow.month();
-    //this.yearNow = this.dateNow.year();
-
     this.year = this.dateNow.year();
-    //this.arrayDays = this.createCalendar(this.dateNow);
-    //this.dataMonths = [];
     this.generateYear(this.year);
   }
 
-  public createCalendar(month) {
+  public createCalendar(month: moment.Moment) {
     const firstDay = month.startOf('M');
     const days = Array.apply(null, { length: month.daysInMonth() })
       .map(Number.call, Number)
@@ -92,33 +79,17 @@ export class HomePage {
     }
   }
 
-  /*public nextMonth() {
-    this.dateNow.add(1, 'M');
-    this.monthNow = this.months[this.dateNow.month()];
-    this.yearNow = this.dateNow.year();
-    this.arrayDays = this.createCalendar(this.dateNow);
-    this.today = this.isToday(this.dateNow);
-  }
-
-  public previousMonth() {
-    this.dateNow.subtract(1, 'M');
-    if(this.dateNow.year()>=2022){
-      this.monthNow = this.months[this.dateNow.month()];
-      this.yearNow = this.dateNow.year();
-      this.arrayDays = this.createCalendar(this.dateNow);
-      this.today = this.isToday(this.dateNow);
-    }else{
-      this.dateNow.add(1, 'M');
-    }
-  }
-
   public isToday(day: moment.Moment) {
-    if (moment().format('L') === day.format('L')) {
-      return +day.format('D');
-    } else {
-      return 0;
+    if(day!=null){
+      if (moment().format('L') === day.format('L')) {
+        return true;
+      } else {
+        return false;
+      }
+    }else{
+      return false;
     }
-  }*/
+  }
 
   public isDay(day: any) {
     let firstDayWork = this.firstDayWorkSA;

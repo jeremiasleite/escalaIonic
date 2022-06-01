@@ -13,17 +13,15 @@
 .border-week {
     border-width: 1px;    
     border-bottom-style: solid;
-    border-color: lightgray
+    border-color: lightgray;
+    font-weight: bold;
 }
 
 .calendar {
     //background-color: lightcyan;
     text-align: center;
-    font-size: medium;  
-}
-
-table {
-    width: 100%;
+    font-size: medium;
+    padding: 0px;  
 }
 
 .borderDays {
@@ -31,7 +29,7 @@ table {
     border-style: solid;
     border-color: lightgray;    
     font-size: 1em;
-    height: 3.5em;
+    height: 3em;
 }
 
 .dia {
@@ -50,6 +48,11 @@ table {
     text-align: center;
     color: yellow;
     border-color: gray;
+}
+
+.today{
+    color: yellow;
+    font-weight: bolder;
 }
 
 
